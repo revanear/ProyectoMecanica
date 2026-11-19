@@ -1,0 +1,343 @@
+/* Portada principal con degradado sutil */
+.portada {
+  background: linear-gradient(135deg, #7a1c33 0%, #4a0e1d 100%);
+  color: white;
+  text-align: center;
+  padding: 45px 20px;
+  border-bottom: 4px solid #d4af37; /* Detalle dorado discreto */
+}
+
+/* Estilo para la imagen del trompo en la portada */
+.imagen-portada {
+  width: 130px;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 50%; /* La hace circular */
+  border: 3px solid rgba(255, 255, 255, 0.4);
+  margin-bottom: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilos generales de la página */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background-color: #f4f4f9;
+  color: #333333;
+  line-height: 1.6;
+}
+
+.menu {
+  background-color: #ffffff;
+  padding: 10px 25px;
+  border-bottom: 3px solid #7a1c33;
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* Permite que los enlaces se acomoden si la pantalla es chica */
+  gap: 10px;
+  z-index: 100;
+}
+
+.enlaces-menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.enlaces-menu a {
+  text-decoration: none;
+  color: #7a1c33;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.enlaces-menu a:hover {
+  text-decoration: underline;
+}
+
+.logo-nav {
+  height: 50px; /* Tamaño discreto para que no estorbe */
+  width: auto;
+}
+
+
+/* Portada principal */
+.portada {
+  background-color: #7a1c33;
+  color: white;
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.etiqueta {
+  background-color: rgba(255, 255, 255, 0.2);
+  display: inline-block;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+.contenedor {
+  max-width: 100%;
+  margin: 20px 30px; 
+  padding: 0;
+}
+
+/* Estilo de cada sección blanca */
+.tarjeta {
+  background-color: white;
+  padding: 25px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  color: #7a1c33;
+  border-bottom: 2px solid #eeeeee;
+  padding-bottom: 8px;
+}
+
+/* Cuadro destacado para la pregunta de investigación */
+.destacado {
+  background-color: #fdf2f4;
+  border-left: 4px solid #7a1c33;
+  padding: 15px;
+  margin: 15px 0;
+}
+
+/* Cajas grises para las fórmulas */
+.formula {
+  background-color: #f0f2f5;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 5px;
+  font-size: 17px;
+  text-align: center;
+}
+
+/* Cajas para las 3 configuraciones */
+.caja-config {
+  background-color: #fafafa;
+  padding: 12px 15px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border-left: 5px solid gray;
+}
+
+.borde-azul { border-left-color: #2563eb; }
+.borde-rojo { border-left-color: #dc2626; }
+.borde-verde { border-left-color: #16a34a; }
+
+/* Imagen de la gráfica */
+.caja-imagen {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.caja-imagen img {
+  max-width: 100%;
+  border-radius: 8px;
+  border: 1px solid #dddddd;
+}
+
+/* Botón y Tabla */
+.boton {
+  background-color: #7a1c33;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.boton:hover {
+  background-color: #561122;
+}
+
+.oculto {
+  display: none; /* Esta clase esconde la tabla al principio */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+th, td {
+  border: 1px solid #dddddd;
+  padding: 8px;
+  text-align: center;
+}
+
+th {
+  background-color: #7a1c33;
+  color: white;
+}
+
+/* Pie de página */
+.pie {
+  background-color: #222222;
+  color: #dddddd;
+  text-align: center;
+  padding: 25px 15px;
+  font-size: 14px;
+}
+
+
+/* Cuadrícula de tarjetas interactivas para fórmulas */
+.cuadricula-formulas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.tarjeta-flip {
+  background-color: transparent;
+  height: 195px; /* Ajustado para que quepan las variables abajo */
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.tarjeta-interior {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+/* Clase que se activa al hacer clic */
+.tarjeta-flip.volteada .tarjeta-interior {
+  transform: rotateY(180deg);
+}
+
+.cara-frente, .cara-atras {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden; /* Oculta la cara trasera mientras no gira */
+  border-radius: 8px;
+  padding: 15px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+/* Diseño de la portada de la tarjeta */
+.cara-frente {
+  background-color: #fdf2f4;
+  border: 2px solid #7a1c33;
+  color: #333333;
+}
+
+.cara-frente h4 {
+  margin: 0 0 8px 0;
+  color: #7a1c33;
+  font-size: 16px;
+}
+
+.cara-frente p {
+  margin: 0 0 10px 0;
+  font-size: 13px;
+}
+
+.aviso-clic {
+  font-size: 11px;
+  color: #7a1c33;
+  font-weight: bold;
+  background: rgba(122, 28, 51, 0.1);
+  padding: 3px 10px;
+  border-radius: 12px;
+}
+
+/* Diseño del reverso (donde sale la fórmula) */
+.cara-atras {
+  background-color: #7a1c33;
+  color: white;
+  transform: rotateY(180deg);
+}
+
+.cara-atras h4 {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  color: #f8d7da;
+}
+
+.ecuacion {
+  font-family: monospace;
+  font-size: 16px;
+  background-color: rgba(0, 0, 0, 0.25);
+  padding: 8px 12px;
+  border-radius: 5px;
+  margin-bottom: 8px;
+}
+
+/* Pestañas interactivas de Casos de Estudio */
+.barra-pestanas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #eeeeee;
+  padding-bottom: 10px;
+}
+
+.btn-caso {
+  background-color: #f0f2f5;
+  color: #333333;
+  border: 1px solid #cccccc;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-caso:hover {
+  background-color: #e2e6ea;
+}
+
+.btn-caso.activo {
+  background-color: #7a1c33;
+  color: white;
+  border-color: #7a1c33;
+}
+
+/* Ficha visual del material */
+.ficha-material {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background-color: #fdf2f4;
+  padding: 15px;
+  border-radius: 8px;
+  border-left: 5px solid #7a1c33;
+  margin-bottom: 15px;
+}
+
+.img-material {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  background: white;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #dddddd;
+}
+
+/* Efecto metálico automático para el Caso 2 (Aluminio) */
+.filtro-aluminio {
+  filter: grayscale(100%) contrast(120%);
+}

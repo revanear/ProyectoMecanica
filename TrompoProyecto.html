@@ -1,0 +1,564 @@
+<div id="glowscript" class="glowscript">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link type="text/css" href="https://www.glowscript.org/css/redmond/2.1/jquery-ui.custom.css" rel="stylesheet" />
+<link type="text/css" href="https://www.glowscript.org/css/ide.css" rel="stylesheet" />
+<script type="text/javascript" src="https://www.glowscript.org/lib/jquery/2.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://www.glowscript.org/lib/jquery/2.1/jquery-ui.custom.min.js"></script>
+<script type="text/javascript" src="https://www.glowscript.org/package/glow.3.2.min.js"></script>
+<script type="text/javascript" src="https://www.glowscript.org/package/RSrun.3.2.min.js"></script>
+<script type="text/javascript"><!--//--><![CDATA[//><!--
+
+// START JAVASCRIPT
+;(function() {;
+var ρσ_modules = {};
+var pausado, pasos_por_frame, M, omega_0, omega, theta, phi, t, nombre_caso;
+ρσ_modules.pythonize = {};
+
+(function(){
+    function strings() {
+        var string_funcs, exclude, name;
+        string_funcs = set("capitalize strip lstrip rstrip islower isupper isspace lower upper swapcase center count endswith startswith find rfind index rindex format join ljust rjust partition rpartition replace split rsplit splitlines zfill".split(" "));
+        if (!arguments.length) {
+            exclude = (function(){
+                var s = ρσ_set();
+                s.jsset.add("split");
+                s.jsset.add("replace");
+                return s;
+            })();
+        } else if (arguments[0]) {
+            exclude = Array.prototype.slice.call(arguments);
+        } else {
+            exclude = null;
+        }
+        if (exclude) {
+            string_funcs = string_funcs.difference(set(exclude));
+        }
+        var ρσ_Iter0 = string_funcs;
+        ρσ_Iter0 = ((typeof ρσ_Iter0[Symbol.iterator] === "function") ? (ρσ_Iter0 instanceof Map ? ρσ_Iter0.keys() : ρσ_Iter0) : Object.keys(ρσ_Iter0));
+        for (var ρσ_Index0 of ρσ_Iter0) {
+            name = ρσ_Index0;
+            (ρσ_expr_temp = String.prototype)[(typeof name === "number" && name < 0) ? ρσ_expr_temp.length + name : name] = (ρσ_expr_temp = ρσ_str.prototype)[(typeof name === "number" && name < 0) ? ρσ_expr_temp.length + name : name];
+        }
+    };
+    if (!strings.__module__) Object.defineProperties(strings, {
+        __module__ : {value: "pythonize"}
+    });
+
+    ρσ_modules.pythonize.strings = strings;
+})();
+async function __main__() {
+"use strict";
+    var display = canvas;
+    var scene = canvas();
+
+    function round(num, n=0) {return Number(num.toFixed(n))}
+
+    var version, print, arange, __name__, type, ρσ_ls, g, R, h, h_punta, d, tau_f, omega_critica, theta_suelo, M, omega_0, omega, theta, phi, t, dt, pausado, pasos_por_frame, nombre_caso, punta, cuerpo, corona, perilla, marca, suelo, pos_l, i, eje_ref, flecha_L, flecha_tau, lbl_L, lbl_tau, estela, panel_datos, g_vel, curva_w, linea_c, g_ene, curva_k, spin_acumulado, contador_ui, Iz, alpha, t_paro_teorico, K_rot, L_mag, Omega_prec, estado, factor_caida, u, v_perp, v_marca, pos_cm, largo_L, dir_tau, altura_total, iz_texto, txt, _;
+    version = ρσ_list_decorate([ "3.2", "glowscript" ]);
+    Array.prototype['+'] = function(r) {return this.concat(r)}
+    Array.prototype['*'] = function(r) {return __array_times_number(this, r)}
+    window.__GSlang = "vpython";
+    print = GSprint;
+    arange = range;
+    __name__ = "__main__";
+    type = pytype;
+    var strings = ρσ_modules.pythonize.strings;
+
+    strings();
+    "6";
+    scene.title = "<b>SIMULACIÓN 3D: ANÁLISIS DEL MOVIMIENTO ROTACIONAL DE UN TROMPO<\/b>\n";
+    "7";
+    scene.background = vector(.07, .09, .13);
+    "8";
+    scene.width = 860;
+    "9";
+    scene.height = 420;
+    "10";
+    scene.camera.pos = vector(.13, .1, .15);
+    "11";
+    scene.camera.axis = vector(.13["-u"](), .06["-u"](), .15["-u"]());
+    "13";
+    scene.lights = ρσ_list_decorate([]);
+    "14";
+    ρσ_interpolate_kwargs.call(this, distant_light, [ρσ_desugar_kwargs({direction: vector(.5, 1, .5), color: color.white})]);
+    "15";
+    ρσ_interpolate_kwargs.call(this, distant_light, [ρσ_desugar_kwargs({direction: vector(.5["-u"](), .5, .5["-u"]()), color: color.gray(.5)})]);
+    "20";
+    g = 9.81;
+    "21";
+    R = .03;
+    "22";
+    h = .06;
+    "23";
+    h_punta = .007;
+    "24";
+    d = .045;
+    "25";
+    tau_f = 405e-7;
+    "26";
+    omega_critica = 35;
+    "27";
+    theta_suelo = atan(h_punta["+"](h)["/"](R));
+    "29";
+    M = .05;
+    "30";
+    omega_0 = 150;
+    "31";
+    omega = omega_0;
+    "32";
+    theta = .06;
+    "33";
+    phi = 0;
+    "34";
+    t = 0;
+    "35";
+    dt = .01;
+    "36";
+    pausado = false;
+    "37";
+    pasos_por_frame = 1;
+    "38";
+    nombre_caso = "Caso 1: Lanzamiento Base (Polímero/Madera - 50g)";
+    "43";
+    punta = ρσ_interpolate_kwargs.call(this, cone, [ρσ_desugar_kwargs({pos: vector(0, h_punta, 0), axis: vector(0, h_punta["-u"](), 0), radius: .0035, color: color.gray(.85)})]);
+    "44";
+    cuerpo = ρσ_interpolate_kwargs.call(this, cone, [ρσ_desugar_kwargs({pos: vector(0, h_punta["+"](h), 0), axis: vector(0, h["-u"](), 0), radius: R, color: vector(.82, .55, .28)})]);
+    "45";
+    corona = ρσ_interpolate_kwargs.call(this, cylinder, [ρσ_desugar_kwargs({pos: vector(0, h_punta["+"](h), 0), axis: vector(0, .004, 0), radius: R, color: vector(.65, .4, .18)})]);
+    "46";
+    perilla = ρσ_interpolate_kwargs.call(this, cylinder, [ρσ_desugar_kwargs({pos: vector(0, h_punta["+"](h)["+"](.004), 0), axis: vector(0, .01, 0), radius: .0035, color: vector(.9, .4, .1)})]);
+    "47";
+    marca = ρσ_interpolate_kwargs.call(this, box, [ρσ_desugar_kwargs({pos: vector(0, h_punta["+"](h)["+"](.0045), 0), size: vector(R["*"](1.95), .0025, .004), color: color.white})]);
+    "49";
+    suelo = ρσ_interpolate_kwargs.call(this, box, [ρσ_desugar_kwargs({pos: vector(0, .0015["-u"](), 0), size: vector(.26, .003, .26), color: vector(.15, .18, .24)})]);
+    "50";
+    for (var ρσ_Index1 = 12["-u"](); ρσ_Index1["<"](13); ρσ_Index1=ρσ_Index1["+"](2)) {
+        i = ρσ_Index1;
+        "51";
+        pos_l = i["*"](.01);
+        "52";
+        ρσ_interpolate_kwargs.call(this, curve, [ρσ_desugar_kwargs({pos: ρσ_list_decorate([ vector(pos_l, 5e-4, .12["-u"]()), vector(pos_l, 5e-4, .12) ]), color: color.gray(.35), radius: 3e-4})]);
+        "53";
+        ρσ_interpolate_kwargs.call(this, curve, [ρσ_desugar_kwargs({pos: ρσ_list_decorate([ vector(.12["-u"](), 5e-4, pos_l), vector(.12, 5e-4, pos_l) ]), color: color.gray(.35), radius: 3e-4})]);
+    }
+    "55";
+    eje_ref = ρσ_interpolate_kwargs.call(this, cylinder, [ρσ_desugar_kwargs({pos: vector(0, 0, 0), axis: vector(0, .1, 0), radius: 5e-4, color: color.gray(.5), opacity: .5})]);
+    "57";
+    flecha_L = ρσ_interpolate_kwargs.call(this, arrow, [ρσ_desugar_kwargs({pos: vector(0, d, 0), axis: vector(0, .05, 0), color: color.green, shaftwidth: .0025})]);
+    "58";
+    flecha_tau = ρσ_interpolate_kwargs.call(this, arrow, [ρσ_desugar_kwargs({pos: vector(0, d, 0), axis: vector(.04, 0, 0), color: color.red, shaftwidth: .0025})]);
+    "59";
+    lbl_L = ρσ_interpolate_kwargs.call(this, label, [ρσ_desugar_kwargs({pos: vector(0, d["+"](.05), 0), text: "L (Momento Angular)", xoffset: 15, yoffset: 15, color: color.green, box: false, height: 11})]);
+    "60";
+    lbl_tau = ρσ_interpolate_kwargs.call(this, label, [ρσ_desugar_kwargs({pos: vector(.04, d, 0), text: "τ (Torque)", xoffset: 15, yoffset: 15["-u"](), color: color.red, box: false, height: 11})]);
+    "62";
+    estela = ρσ_interpolate_kwargs.call(this, curve, [ρσ_desugar_kwargs({color: color.cyan, radius: 6e-4})]);
+    "67";
+    async function btn_c1() {
+        (await cargar_caso(1));
+    };
+    if (!btn_c1.__module__) Object.defineProperties(btn_c1, {
+        __module__ : {value: null}
+    });
+
+    "68";
+    async function btn_c2() {
+        (await cargar_caso(2));
+    };
+    if (!btn_c2.__module__) Object.defineProperties(btn_c2, {
+        __module__ : {value: null}
+    });
+
+    "69";
+    async function btn_c3() {
+        (await cargar_caso(3));
+    };
+    if (!btn_c3.__module__) Object.defineProperties(btn_c3, {
+        __module__ : {value: null}
+    });
+
+    "71";
+    async function toggle_pausa(b) {
+        "72";
+        "73";
+        pausado = !pausado;
+        "74";
+        b.text = (pausado) ? "▶ Reanudar" : "⏸ Pausar";
+    };
+    if (!toggle_pausa.__argnames__) Object.defineProperties(toggle_pausa, {
+        __argnames__ : {value: ["b"]},
+        __module__ : {value: null}
+    });
+
+    "76";
+    async function vel_normal() {
+        "77";
+        "78";
+        pasos_por_frame = 1;
+    };
+    if (!vel_normal.__module__) Object.defineProperties(vel_normal, {
+        __module__ : {value: null}
+    });
+
+    "80";
+    async function vel_rapida() {
+        "81";
+        "82";
+        pasos_por_frame = 3;
+    };
+    if (!vel_rapida.__module__) Object.defineProperties(vel_rapida, {
+        __module__ : {value: null}
+    });
+
+    "84";
+    async function cam_iso() {
+        "85";
+        scene.camera.pos = vector(.13, .1, .15);
+        "86";
+        scene.camera.axis = vector(.13["-u"](), .06["-u"](), .15["-u"]());
+    };
+    if (!cam_iso.__module__) Object.defineProperties(cam_iso, {
+        __module__ : {value: null}
+    });
+
+    "88";
+    async function cam_sup() {
+        "89";
+        scene.camera.pos = vector(0, .2, .01);
+        "90";
+        scene.camera.axis = vector(0, .2["-u"](), .01["-u"]());
+    };
+    if (!cam_sup.__module__) Object.defineProperties(cam_sup, {
+        __module__ : {value: null}
+    });
+
+    "92";
+    async function cam_lat() {
+        "93";
+        scene.camera.pos = vector(.18, .04, 0);
+        "94";
+        scene.camera.axis = vector(.18["-u"](), 0, 0);
+    };
+    if (!cam_lat.__module__) Object.defineProperties(cam_lat, {
+        __module__ : {value: null}
+    });
+
+    "96";
+    scene.append_to_caption("\n<b>1. Seleccionar Caso de Estudio:</b>  ");
+    "97";
+    ρσ_interpolate_kwargs.call(this, button, [ρσ_desugar_kwargs({text: "Caso 1 (50g | 150 rad/s)", bind: btn_c1})]);
+    "98";
+    scene.append_to_caption(" ");
+    "99";
+    ρσ_interpolate_kwargs.call(this, button, [ρσ_desugar_kwargs({text: "Caso 2 (100g | 150 rad/s)", bind: btn_c2})]);
+    "100";
+    scene.append_to_caption(" ");
+    "101";
+    ρσ_interpolate_kwargs.call(this, button, [ρσ_desugar_kwargs({text: "Caso 3 (50g | 100 rad/s)", bind: btn_c3})]);
+    "103";
+    scene.append_to_caption("\n<b>2. Control de Tiempo y Vistas:</b>   ");
+    "104";
+    ρσ_interpolate_kwargs.call(this, button, [ρσ_desugar_kwargs({text: "⏸ Pausar", bind: toggle_pausa})]);
+    "105";
+    scene.append_to_caption(" ");
+    "106";
+    ρσ_interpolate_kwargs.call(this, button, [ρσ_desugar_kwargs({text: "▶ Tiempo Real (x1)", bind: vel_normal})]);
+    "107";
+    scene.append_to_caption(" ");
+    "108";
+    ρσ_interpolate_kwargs.call(this, button, [ρσ_desugar_kwargs({text: "⏩ Rápida (x3)", bind: vel_rapida})]);
+    "109";
+    scene.append_to_caption("  |  ");
+    "110";
+    ρσ_interpolate_kwargs.call(this, button, [ρσ_desugar_kwargs({text: "Vista Isométrica", bind: cam_iso})]);
+    "111";
+    scene.append_to_caption(" ");
+    "112";
+    ρσ_interpolate_kwargs.call(this, button, [ρσ_desugar_kwargs({text: "Vista Superior", bind: cam_sup})]);
+    "113";
+    scene.append_to_caption(" ");
+    "114";
+    ρσ_interpolate_kwargs.call(this, button, [ρσ_desugar_kwargs({text: "Vista Lateral", bind: cam_lat})]);
+    "116";
+    scene.append_to_caption("\n\n");
+    "117";
+    panel_datos = ρσ_interpolate_kwargs.call(this, wtext, [ρσ_desugar_kwargs({text: "Cargando datos..."})]);
+    "118";
+    scene.append_to_caption("\n\n");
+    "123";
+    g_vel = ρσ_interpolate_kwargs.call(this, graph, [ρσ_desugar_kwargs({title: "<b>Gráfica 1: Desaceleración Angular ω(t)</b>", xtitle: "Tiempo (s)", ytitle: "ω (rad/s)", width: 410, height: 200, xmin: 0, xmax: 105, ymin: 0, ymax: 160, align: "left", background: color.white})]);
+    "125";
+    curva_w = ρσ_interpolate_kwargs.call(this, gcurve, [ρσ_desugar_kwargs({graph: g_vel, color: color.blue, width: 2.5, label: "ω(t)"})]);
+    "126";
+    linea_c = ρσ_interpolate_kwargs.call(this, gcurve, [ρσ_desugar_kwargs({graph: g_vel, color: color.red, width: 1.5, label: "ω crítica (35 rad/s)"})]);
+    "128";
+    g_ene = ρσ_interpolate_kwargs.call(this, graph, [ρσ_desugar_kwargs({title: "<b>Gráfica 2: Energía Cinética K(t)</b>", xtitle: "Tiempo (s)", ytitle: "Energía (J)", width: 410, height: 200, xmin: 0, xmax: 105, ymin: 0, ymax: .32, align: "left", background: color.white})]);
+    "130";
+    curva_k = ρσ_interpolate_kwargs.call(this, gcurve, [ρσ_desugar_kwargs({graph: g_ene, color: vector(.85, .35, 0), width: 2.5, label: "K_rot(t)"})]);
+    "132";
+    async function cargar_caso(caso) {
+        var ρσ_ls, Iz_ini;
+        "133";
+        "134";
+        estela.clear();
+        "135";
+        curva_w.data = ρσ_list_decorate([]);
+        "136";
+        linea_c.data = ρσ_list_decorate([]);
+        "137";
+        curva_k.data = ρσ_list_decorate([]);
+        "138";
+        t = 0;
+        "139";
+        theta = .06;
+        "140";
+        phi = 0;
+        "142";
+        if ((caso === 1 || typeof caso === "object" && ρσ_equals(caso, 1))) {
+            "143";
+            M = .05;
+            "144";
+            omega_0 = 150;
+            "145";
+            nombre_caso = "Caso 1: Lanzamiento Base (Polímero/Madera - 50g)";
+            "146";
+            cuerpo.color = vector(.82, .55, .28);
+            "147";
+            corona.color = vector(.65, .4, .18);
+            "148";
+            marca.color = color.white;
+            "149";
+        } else if ((caso === 2 || typeof caso === "object" && ρσ_equals(caso, 2))) {
+            "150";
+            M = .1;
+            "151";
+            omega_0 = 150;
+            "152";
+            nombre_caso = "Caso 2: Masa Incrementada (Aluminio - 100g)";
+            "153";
+            cuerpo.color = vector(.68, .74, .82);
+            "154";
+            corona.color = vector(.5, .56, .65);
+            "155";
+            marca.color = color.blue;
+            "156";
+        } else if ((caso === 3 || typeof caso === "object" && ρσ_equals(caso, 3))) {
+            "157";
+            M = .05;
+            "158";
+            omega_0 = 100;
+            "159";
+            nombre_caso = "Caso 3: Velocidad Reducida (Polímero/Madera - 50g)";
+            "160";
+            cuerpo.color = vector(.82, .55, .28);
+            "161";
+            corona.color = vector(.65, .4, .18);
+            "162";
+            marca.color = color.yellow;
+        }
+        "164";
+        omega = omega_0;
+        "165";
+        Iz_ini = 3["/"](10)["*"](M)["*"](Math.pow(R, 2));
+        "166";
+        curva_w.plot(0, omega_0);
+        "167";
+        linea_c.plot(0, omega_critica);
+        "168";
+        curva_k.plot(0, .5["*"](Iz_ini)["*"](Math.pow(omega_0, 2)));
+    };
+    if (!cargar_caso.__argnames__) Object.defineProperties(cargar_caso, {
+        __argnames__ : {value: ["caso"]},
+        __module__ : {value: null}
+    });
+
+    "170";
+    (await cargar_caso(1));
+    "175";
+    spin_acumulado = 0;
+    "176";
+    contador_ui = 0;
+    "178";
+    while (true) {
+        "179";
+        (await rate(100));
+        "181";
+        if (!pausado) {
+            "182";
+            for (var ρσ_Index2 = 0; ρσ_Index2["<"](pasos_por_frame); ρσ_Index2++) {
+                _ = ρσ_Index2;
+                "183";
+                Iz = 3["/"](10)["*"](M)["*"](Math.pow(R, 2));
+                "184";
+                alpha = tau_f["-u"]()["/"](Iz);
+                "185";
+                t_paro_teorico = omega_0["/"](abs(alpha));
+                "187";
+                if (omega[">"](0)) {
+                    "188";
+                    t=t["+"](dt);
+                    "189";
+                    omega = max(0, omega_0["+"](alpha["*"](t)));
+                    "190";
+                    K_rot = .5["*"](Iz)["*"](Math.pow(omega, 2));
+                    "191";
+                    L_mag = Iz["*"](omega);
+                    "192";
+                    Omega_prec = M["*"](g)["*"](d)["/"](Iz["*"](max(omega, 15)));
+                    "194";
+                    if (omega[">"](omega_critica)) {
+                        "195";
+                        estado = "<span style='color:#008000;'><b>ESTABLE (Trompo Dormido)</b></span>";
+                        "196";
+                        theta = .06["+"](.01["*"](sin(t["*"](6))));
+                        "197";
+                    } else if (omega[">"](0)) {
+                        "198";
+                        estado = "<span style='color:#d97706;'><b>INESTABLE (Precesión y Caída)</b></span>";
+                        "199";
+                        factor_caida = 1["-"](omega["/"](omega_critica));
+                        "200";
+                        theta = .06["+"](theta_suelo["-"](.06)["*"](Math.pow(factor_caida, 1.5)));
+                        "202";
+                    }
+                    if (omega["<="](0)) {
+                        "203";
+                        omega = 0;
+                        "204";
+                        theta = theta_suelo;
+                        "205";
+                        K_rot = 0;
+                        "206";
+                        L_mag = 0;
+                        "207";
+                        Omega_prec = 0;
+                        "208";
+                        t = t_paro_teorico;
+                        "209";
+                        estado = "<span style='color:#dc2626;'><b>REPOSO TOTAL (Detenido en el suelo)</b></span>";
+                        "210";
+                        curva_w.plot(t, 0);
+                        "211";
+                        linea_c.plot(t, omega_critica);
+                        "212";
+                        curva_k.plot(t, 0);
+                    }
+                    "214";
+                    phi=phi["+"](Omega_prec["*"](dt));
+                    "215";
+                    spin_acumulado=spin_acumulado["+"](omega["*"](.04)["*"](dt));
+                    "217";
+                    u = norm(vector(sin(theta)["*"](cos(phi)), cos(theta), sin(theta)["*"](sin(phi))));
+                    "219";
+                    punta.pos = u["*"](h_punta);
+                    "220";
+                    punta.axis = u["-u"]()["*"](h_punta);
+                    "222";
+                    cuerpo.pos = u["*"](h_punta["+"](h));
+                    "223";
+                    cuerpo.axis = u["-u"]()["*"](h);
+                    "225";
+                    corona.pos = u["*"](h_punta["+"](h));
+                    "226";
+                    corona.axis = u["*"](.004);
+                    "228";
+                    perilla.pos = u["*"](h_punta["+"](h)["+"](.004));
+                    "229";
+                    perilla.axis = u["*"](.01);
+                    "231";
+                    v_perp = (abs(u.z)["<"](.9)) ? norm(cross(u, vector(0, 0, 1))) : norm(cross(u, vector(1, 0, 0)));
+                    "232";
+                    v_marca = ρσ_interpolate_kwargs.call(this, rotate, [v_perp].concat([ρσ_desugar_kwargs({angle: spin_acumulado, axis: u})]));
+                    "233";
+                    marca.pos = u["*"](h_punta["+"](h)["+"](.0045));
+                    "234";
+                    marca.axis = v_marca["*"](R)["*"](1.95);
+                    "235";
+                    marca.up = u;
+                    "237";
+                    pos_cm = u["*"](d);
+                    "238";
+                    flecha_L.pos = pos_cm;
+                    "239";
+                    largo_L = (omega[">"](0)) ? .015["+"](.065["*"](L_mag["/"](.00405))) : .001;
+                    "240";
+                    flecha_L.axis = u["*"](largo_L);
+                    "241";
+                    lbl_L.pos = flecha_L.pos["+"](flecha_L.axis);
+                    "243";
+                    flecha_tau.pos = pos_cm;
+                    "244";
+                    dir_tau = cross(u, vector(0, 1["-u"](), 0));
+                    "245";
+                    if (mag(dir_tau)[">"](0) && omega[">"](0)) {
+                        "246";
+                        flecha_tau.axis = norm(dir_tau)["*"](.04);
+                        "247";
+                    } else {
+                        "248";
+                        flecha_tau.axis = vector(.001, 0, 0);
+                    }
+                    "249";
+                    lbl_tau.pos = flecha_tau.pos["+"](flecha_tau.axis);
+                    "251";
+                    altura_total = h_punta["+"](h)["+"](.014);
+                    "252";
+                    if (omega[">"](0)) {
+                        "253";
+                        ρσ_interpolate_kwargs.call(estela, estela.append, [ρσ_desugar_kwargs({pos: u["*"](altura_total)})]);
+                        "254";
+                        if (estela.npoints[">"](45)) {
+                            "255";
+                            estela.pypop(0);
+                        }
+                    }
+                    "257";
+                    contador_ui=contador_ui["+"](1);
+                    "258";
+                    if (contador_ui[">="](10)) {
+                        "259";
+                        if (omega[">"](0)) {
+                            "260";
+                            curva_w.plot(t, omega);
+                            "261";
+                            linea_c.plot(t, omega_critica);
+                            "262";
+                            curva_k.plot(t, K_rot);
+                        }
+                        "264";
+                        iz_texto = (M["<"](.08)) ? "1.35e-5" : "2.70e-5";
+                        "265";
+                        txt = "<b>"["+"](nombre_caso)["+"]("</b> &nbsp;—&nbsp; ")["+"](estado)["+"]("<br>");
+                        "266";
+                        txt=txt["+"]("<b>Tiempo (t):</b> "["+"](str(round(t, 1)))["+"](" s &nbsp;|&nbsp; "));
+                        "267";
+                        txt=txt["+"]("<b>Masa (m):</b> "["+"](str(int(M["*"](1e3))))["+"](" g &nbsp;|&nbsp; "));
+                        "268";
+                        txt=txt["+"]("<b>Inercia (Iz):</b> "["+"](iz_texto)["+"](" kg·m² &nbsp;|&nbsp; "));
+                        "269";
+                        txt=txt["+"]("<b>Desaceleración (α):</b> "["+"](str(round(alpha, 1)))["+"](" rad/s² &nbsp;|&nbsp; "));
+                        "270";
+                        txt=txt["+"]("<b>Vel. Angular (ω):</b> "["+"](str(round(omega, 1)))["+"](" rad/s &nbsp;|&nbsp; "));
+                        "271";
+                        txt=txt["+"]("<b>Energía (K):</b> "["+"](str(round(K_rot, 4)))["+"](" J &nbsp;|&nbsp; "));
+                        "272";
+                        txt=txt["+"]("<b>Precesión (Ω):</b> "["+"](str(round(Omega_prec, 2)))["+"](" rad/s"));
+                        "273";
+                        panel_datos.text = txt;
+                        "274";
+                        contador_ui = 0;
+                    }
+                }
+            }
+        }
+    }
+};
+if (!__main__.__module__) Object.defineProperties(__main__, {
+    __module__ : {value: null}
+});
+
+;$(function(){ window.__context = { glowscript_container: $("#glowscript").removeAttr("id") }; __main__() })})()
+// END JAVASCRIPT
+
+//--><!]]></script>
+</div>

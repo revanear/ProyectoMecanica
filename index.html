@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proyecto Trompo - Mecánica II</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- BARRA SUPERIOR -->
+<nav class="menu">
+  <img src="Logo.uacm.png" alt="Logo UACM" class="logo-nav">
+  <div class="enlaces-menu">
+    <a href="#inicio">Inicio</a>
+    <a href="#objetivos">Objetivos</a>
+    <a href="#teoria">Teoría</a>
+    <a href="#configuraciones">Casos y Datos</a>
+    <a href="#resultados">Gráfica</a>
+    <a href="#analisis">Análisis</a>
+    <a href="#simulador">Simulador 3D</a>
+    <a href="#conclusiones">Conclusiones</a>
+    <a href="#bibliografia">Bibliografía</a>
+    <a href="#equipo">Equipo</a>
+  </div>
+</nav>
+
+
+  <!-- 1. PORTADA -->
+<header class="portada" id="inicio">
+  <!-- Imagen circular del trompo -->
+  <img src="Trompo.jpg" alt="Ilustración de un trompo" class="imagen-portada">
+  <br>
+  
+  <div class="etiqueta">Materia: Mecánica II • Profesor: Luis Alberto Puerto Domínguez</div>
+  <h1>Análisis del movimiento rotacional en un trompo bajo condiciones de cuerpo ideal.</h1>
+  <p>Estudio analítico y simulado sobre cómo la masa, la geometría y la velocidad angular contrarrestan la gravedad durante la rotación.</p>
+</header>
+
+  <!-- CONTENEDOR PRINCIPAL -->
+  <main class="contenedor">
+<!-- 1. INTRODUCCIÓN, ANTECEDENTES Y OBJETIVOS -->
+<section id="objetivos" class="tarjeta">
+  <h2>1. Introducción, Antecedentes y Objetivos</h2>
+  
+  <p>
+    El trompo es uno de los juguetes tradicionales más emblemáticos en la cultura popular de <strong>México</strong> y el mundo, cuyo origen se remonta a las civilizaciones antiguas (como Grecia, Roma y Asia), donde se tallaba artesanalmente en madera o arcilla. Con el paso del tiempo, su fabricación evolucionó hacia materiales como los polímeros de alta densidad y aleaciones metálicas (como el aluminio o el acero en su punta), lo que permitió modificar su distribución de masa y mejorar su rendimiento.
+  </p>
+
+  <p>
+    Más allá de su valor cultural y recreativo, desde la perspectiva de la física clásica el trompo es un <strong>cuerpo rígido con simetría axial y geometría cónica</strong> que gira sobre un punto de apoyo fijo tras recibir un impulso mediante un cordel. Mientras rota a gran velocidad se mantiene firme y vertical (estado conocido coloquialmente como <em>"dormido"</em>); sin embargo, a medida que la fricción reduce su velocidad angular, el eje comienza a inclinarse y describir círculos alrededor de la vertical (<strong>precesión</strong>) hasta que finalmente cae.
+  </p>
+
+  <p>
+    Comprender este fenómeno es fundamental en la ingeniería moderna, ya que los mismos principios de conservación del momento angular se aplican en el diseño de giróscopos, sistemas de navegación aeroespacial y mecanismos de estabilización en robótica.
+  </p>
+  
+  <div class="destacado">
+    <strong>Pregunta de investigación:</strong> ¿Cómo influyen el momento de inercia (asociado a distintos materiales y masas) y la velocidad angular de giro en la estabilidad vertical de un trompo ideal y en las características de su movimiento antes de detenerse?
+  </div>
+
+  <h3>Objetivo General:</h3>
+  <p>
+    Determinar el comportamiento del movimiento rotacional de un trompo idealizado mediante el análisis cinemático y energético de múltiples variables (masa y velocidad angular inicial), describiendo su proceso de desaceleración hasta el reposo.
+  </p>
+
+  <h3>Objetivos Específicos:</h3>
+  <ul>
+    <li>Calcular el momento de inercia aproximando el trompo a un cono sólido regular homogéneo, considerando masas asociadas a distintos materiales ideales (polímero/madera y aluminio).</li>
+    <li>Cuantificar la pérdida de energía cinética rotacional a lo largo del tiempo bajo un modelo de torque de fricción constante simplificado.</li>
+    <li>Comparar el tiempo total de giro y el comportamiento dinámico del sistema al variar la velocidad angular inicial y la masa del cuerpo.</li>
+  </ul>
+</section>
+
+<!-- 2. MARCO TEÓRICO Y FUNDAMENTOS DINÁMICOS -->
+<section id="teoria" class="tarjeta">
+  <h2>2. Marco Teórico y Fundamentos Dinámicos</h2>
+  
+  <p>
+    El estudio del movimiento de cuerpos rígidos con un punto fijo de apoyo es un problema clásico de la mecánica general. Desde una perspectiva física, el comportamiento del trompo se fundamenta en la interacción entre su rotación propia y los torques externos que actúan sobre él, divididos en tres fenómenos clave: la <strong>rigidez giroscópica</strong> (tendencia del eje a mantener su orientación), la <strong>precesión</strong> y la <strong>pérdida progresiva de estabilidad</strong> por fricción.
+  </p>
+
+<h3>Ecuaciones del Modelo Idealizado (Haz clic en cada tarjeta para ver la fórmula)</h3>
+
+<div class="cuadricula-formulas">
+  
+  <!-- Tarjeta 1: Momento de Inercia -->
+  <div class="tarjeta-flip" onclick="this.classList.toggle('volteada')">
+    <div class="tarjeta-interior">
+      <div class="cara-frente">
+        <h4>1. Momento de Inercia (I<sub>z</sub>)</h4>
+        <p>Resistencia del cuerpo cónico a cambiar su estado de rotación sobre su eje principal.</p>
+        <span class="aviso-clic">↻ Clic para ver fórmula</span>
+      </div>
+      <div class="cara-atras">
+        <h4>Cono Sólido Homogéneo</h4>
+        <div class="ecuacion">I<sub>z</sub> = (3 / 10) &middot; m &middot; R<sup>2</sup></div>
+        <small>m: masa total (kg)<br>R: radio máximo (m)</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tarjeta 2: Torque de Fricción -->
+  <div class="tarjeta-flip" onclick="this.classList.toggle('volteada')">
+    <div class="tarjeta-interior">
+      <div class="cara-frente">
+        <h4>2. Torque de Fricción (&tau;<sub>f</sub>)</h4>
+        <p>Segunda ley de Newton rotacional que relaciona el frenado con la desaceleración angular.</p>
+        <span class="aviso-clic">↻ Clic para ver fórmula</span>
+      </div>
+      <div class="cara-atras">
+        <h4>Dinámica de Frenado</h4>
+        <div class="ecuacion">&tau;<sub>f</sub> = I<sub>z</sub> &middot; &alpha;</div>
+        <small>&tau;<sub>f</sub>: torque de fricción (N&middot;m)<br>&alpha;: desaceleración angular (rad/s&sup2;)</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tarjeta 3: Velocidad Angular en el Tiempo -->
+  <div class="tarjeta-flip" onclick="this.classList.toggle('volteada')">
+    <div class="tarjeta-interior">
+      <div class="cara-frente">
+        <h4>3. Velocidad Angular &omega;(t)</h4>
+        <p>Cinemática del frenado lineal (MCUV) en cualquier instante de tiempo.</p>
+        <span class="aviso-clic">↻ Clic para ver fórmula</span>
+      </div>
+      <div class="cara-atras">
+        <h4>Ecuación Cinemática</h4>
+        <div class="ecuacion">&omega;(t) = &omega;<sub>0</sub> - |&alpha;| &middot; t</div>
+        <small>&omega;<sub>0</sub>: velocidad inicial (rad/s)<br>t: tiempo transcurrido (s)</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tarjeta 4: Momento Angular -->
+  <div class="tarjeta-flip" onclick="this.classList.toggle('volteada')">
+    <div class="tarjeta-interior">
+      <div class="cara-frente">
+        <h4>4. Momento Angular (L)</h4>
+        <p>Magnitud responsable de la rigidez giroscópica que mantiene erguido al trompo.</p>
+        <span class="aviso-clic">↻ Clic para ver fórmula</span>
+      </div>
+      <div class="cara-atras">
+        <h4>Cantidad de Movimiento Angular</h4>
+        <div class="ecuacion">L = I<sub>z</sub> &middot; &omega;</div>
+        <small>L: momento angular (kg&middot;m&sup2;/s)<br>&omega;: velocidad instantánea (rad/s)</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tarjeta 5: Torque Gravitacional -->
+  <div class="tarjeta-flip" onclick="this.classList.toggle('volteada')">
+    <div class="tarjeta-interior">
+      <div class="cara-frente">
+        <h4>5. Torque Gravitacional (&tau;<sub>g</sub>)</h4>
+        <p>Fuerza de gravedad actuando sobre el centro de masa cuando el eje se inclina.</p>
+        <span class="aviso-clic">↻ Clic para ver fórmula</span>
+      </div>
+      <div class="cara-atras">
+        <h4>Torque Externo por Peso</h4>
+        <div class="ecuacion">&tau;<sub>g</sub> = m &middot; g &middot; d &middot; sin(&theta;)</div>
+        <small>d: distancia al centro de masa (m)<br>&theta;: ángulo de inclinación</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tarjeta 6: Velocidad de Precesión -->
+  <div class="tarjeta-flip" onclick="this.classList.toggle('volteada')">
+    <div class="tarjeta-interior">
+      <div class="cara-frente">
+        <h4>6. Velocidad de Precesión (&Omega;)</h4>
+        <p>Rapidez con la que el eje inclinado describe un cono alrededor de la vertical.</p>
+        <span class="aviso-clic">↻ Clic para ver fórmula</span>
+      </div>
+      <div class="cara-atras">
+        <h4>Precesión Giroscópica</h4>
+        <div class="ecuacion">&Omega; = (m &middot; g &middot; d) / (I<sub>z</sub> &middot; &omega;)</div>
+        <small>Inversamente proporcional a &omega;<br>(aumenta conforme se frena)</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tarjeta 7: Energía Cinética Rotacional -->
+  <div class="tarjeta-flip" onclick="this.classList.toggle('volteada')">
+    <div class="tarjeta-interior">
+      <div class="cara-frente">
+        <h4>7. Energía Cinética (K<sub>rot</sub>)</h4>
+        <p>Energía mecánica almacenada por el giro que se degrada cuadráticamente.</p>
+        <span class="aviso-clic">↻ Clic para ver fórmula</span>
+      </div>
+      <div class="cara-atras">
+        <h4>Energía de Rotación</h4>
+        <div class="ecuacion">K<sub>rot</sub> = (1 / 2) &middot; I<sub>z</sub> &middot; &omega;<sup>2</sup></div>
+        <small>K<sub>rot</sub>: energía en Joules (J)<br>Depende de &omega; al cuadrado</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tarjeta 8: Potencia Disipada -->
+  <div class="tarjeta-flip" onclick="this.classList.toggle('volteada')">
+    <div class="tarjeta-interior">
+      <div class="cara-frente">
+        <h4>8. Potencia Disipada (P)</h4>
+        <p>Tasa temporal a la que la fricción consume la energía cinética del trompo.</p>
+        <span class="aviso-clic">↻ Clic para ver fórmula</span>
+      </div>
+      <div class="cara-atras">
+        <h4>Pérdida de Energía</h4>
+        <div class="ecuacion">P = &tau;<sub>f</sub> &middot; &omega;</div>
+        <small>P: potencia disipada en Watts (W)<br>&tau;<sub>f</sub>: torque de fricción constante</small>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<h3>Fenómenos Giroscópicos Complementarios (Referencia Conceptual)</h3>
+<p>
+  Aunque nuestro modelo matemático simplifica el sistema como un cuerpo ideal en desaceleración lineal (MCUV), en la dinámica tridimensional completa de un trompo intervienen fenómenos físicos adicionales que determinan su comportamiento real. Se presentan a continuación de manera conceptual para delimitar el alcance de este estudio:
+</p>
+
+<ul>
+  <li>
+    <strong>Precesión Giroscópica:</strong> Es el movimiento cónico lento que describe el eje de simetría del trompo alrededor de la vertical. Ocurre porque el torque gravitacional (&tau;<sub>g</sub>) actúa perpendicularmente al vector momento angular (L), desviando su dirección en lugar de derribarlo. Conforme la fricción reduce la velocidad de giro (&omega;), la velocidad de precesión (&Omega;) se incrementa hasta volverse inestable.
+  </li>
+  <li>
+    <strong>Nutación:</strong> Es una pequeña oscilación periódica o "cabeceo" vertical superpuesto al movimiento de precesión. Se manifiesta cuando el trompo no se lanza en un equilibrio perfecto o cuando su velocidad angular cae por debajo del umbral crítico (&omega;<sub>c</sub>), provocando que el eje oscile arriba y abajo antes de colapsar.
+  </li>
+  <li>
+    <strong>Fricción Aerodinámica y Rodadura:</strong> En condiciones reales, el frenado no es estrictamente constante; intervienen el arrastre viscoso del aire (proporcional al cuadrado de la velocidad) y el micro-deslizamiento de la punta sobre la superficie. Para mantener el enfoque en los principios del curso, ambos efectos se agrupan en un solo torque de fricción constante simplificado (&tau;<sub>f</sub>).
+  </li>
+  <li>
+    <strong>Desplazamiento del Punto de Apoyo:</strong> Si la punta metálica del trompo presenta un radio de curvatura apreciable en lugar de un punto matemático fijo, la fricción lateral hace que el cuerpo describa trayectorias en espiral sobre el plano horizontal mientras gira.
+  </li>
+</ul>
+
+<div class="destacado">
+  <strong>Nota de alcance:</strong> Para mantener el análisis alineado con los temas de <em>Mecánica II</em>, en los cálculos y en la simulación 3D se asume un lanzamiento suave donde la nutación es despreciable durante la fase estable ("trompo dormido") y solo se manifiesta al cruzar el umbral crítico de caída.<br><br>
+  <strong>Recursos para profundizar en estos conceptos:</strong><br>
+  • <a href="https://es.wikipedia.org/wiki/Precesi%C3%B3n" target="_blank" style="color: #7a1c33; font-weight: bold;">Movimiento de Precesión (Wikipedia)</a><br>
+  • <a href="https://es.wikipedia.org/wiki/Nutaci%C3%B3n" target="_blank" style="color: #7a1c33; font-weight: bold;">Movimiento de Nutación (Wikipedia)</a><br>
+  • <a href="https://www.youtube.com/watch?v=kHjhKVDeS1w&t=77s" target="_blank" style="color: #7a1c33; font-weight: bold;">Explicación lógica de la precesión giroscópica (Video en YouTube)</a><br>
+  • <a href="https://phet.colorado.edu/es/simulations/rotation" target="_blank" style="color: #7a1c33; font-weight: bold;">Simulador interactivo: Revolución Mariquita (PhET Colorado)</a>
+</div>
+
+
+  <div class="destacado">
+    <strong>Nota de alcance:</strong> Para mantener el análisis alineado con los temas del curso, en los cálculos y en la simulación 3D se asume un lanzamiento suave donde la nutación es despreciable durante la fase estable ("trompo dormido") y solo se manifiesta al cruzar el umbral crítico de caída.
+  </div>
+</section>
+
+
+<!-- 3. CASOS DE ESTUDIO INTERACTIVOS -->
+<section id="configuraciones" class="tarjeta">
+  <h2>3. Casos de Estudio y Resultados Experimentales</h2>
+  <p>Selecciona un caso de estudio para visualizar las propiedades físicas del material ideal, su tabla de decaimiento cinemático y su comportamiento gráfico:</p>
+
+  <!-- Botones de pestañas -->
+  <div class="barra-pestanas">
+    <button class="btn-caso activo" onclick="mostrarCaso(1, this)">Caso 1: Base (Polímero/Madera)</button>
+    <button class="btn-caso" onclick="mostrarCaso(2, this)">Caso 2: Mayor Masa (Aluminio)</button>
+    <button class="btn-caso" onclick="mostrarCaso(3, this)">Caso 3: Velocidad Reducida</button>
+  </div>
+
+  <!-- CONTENIDO CASO 1 -->
+  <div id="contenido-caso-1" class="panel-caso">
+    <div class="ficha-material">
+      <img src="Trompo.jpg" alt="Trompo de Madera/Polímero" class="img-material">
+      <div>
+        <h3>Caso 1: Lanzamiento Base (Polímero / Madera)</h3>
+        <p><strong>Masa (m):</strong> 0.050 kg (50 g) &nbsp;|&nbsp; <strong>Velocidad Inicial (&omega;<sub>0</sub>):</strong> 150 rad/s (1,432 RPM)</p>
+        <p><strong>Momento de Inercia (I<sub>z</sub>):</strong> 1.35 &times; 10<sup>-5</sup> kg&middot;m&sup2; &nbsp;|&nbsp; <strong>Desaceleración (&alpha;):</strong> -3.0 rad/s&sup2;</p>
+        <p><em>Comportamiento:</em> Referencia estándar. Almacena 0.1519 J de energía inicial y mantiene el equilibrio hasta detenerse a los <strong>50.0 segundos</strong>.</p>
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr><th>Tiempo (s)</th><th>0</th><th>5</th><th>10</th><th>15</th><th>20</th><th>25</th><th>30</th><th>35</th><th>40</th><th>45</th><th>50</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>&omega; (rad/s)</strong></td><td>150</td><td>135</td><td>120</td><td>105</td><td>90</td><td>75</td><td>60</td><td>45</td><td>30</td><td>15</td><td><strong>0.0</strong></td></tr>
+        <tr><td><strong>K<sub>rot</sub> (J)</strong></td><td>0.1519</td><td>0.1230</td><td>0.0972</td><td>0.0744</td><td>0.0547</td><td>0.0380</td><td>0.0243</td><td>0.0137</td><td>0.0061</td><td>0.0015</td><td><strong>0.0000</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- CONTENIDO CASO 2 -->
+  <div id="contenido-caso-2" class="panel-caso oculto">
+    <div class="ficha-material">
+      <!-- El filtro grayscale hace que la imagen parezca metálica/aluminio automáticamente -->
+      <img src="TrompoAlumin.jpg" alt="Trompo de Aluminio" class="img-material filtro-aluminio">
+      <div>
+        <h3>Caso 2: Masa Incrementada (Aluminio Ideal)</h3>
+        <p><strong>Masa (m):</strong> 0.100 kg (100 g) &nbsp;|&nbsp; <strong>Velocidad Inicial (&omega;<sub>0</sub>):</strong> 150 rad/s (1,432 RPM)</p>
+        <p><strong>Momento de Inercia (I<sub>z</sub>):</strong> 2.70 &times; 10<sup>-5</sup> kg&middot;m&sup2; &nbsp;|&nbsp; <strong>Desaceleración (&alpha;):</strong> -1.5 rad/s&sup2;</p>
+        <p><em>Comportamiento:</em> Al duplicar la masa, la inercia y la energía inicial (0.3038 J) se duplican, extendiendo el giro hasta los <strong>100.0 segundos</strong>.</p>
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr><th>Tiempo (s)</th><th>0</th><th>10</th><th>20</th><th>30</th><th>40</th><th>50</th><th>60</th><th>70</th><th>80</th><th>90</th><th>100</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>&omega; (rad/s)</strong></td><td>150</td><td>135</td><td>120</td><td>105</td><td>90</td><td>75</td><td>60</td><td>45</td><td>30</td><td>15</td><td><strong>0.0</strong></td></tr>
+        <tr><td><strong>K<sub>rot</sub> (J)</strong></td><td>0.3038</td><td>0.2460</td><td>0.1944</td><td>0.1488</td><td>0.1094</td><td>0.0759</td><td>0.0486</td><td>0.0273</td><td>0.0122</td><td>0.0030</td><td><strong>0.0000</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- CONTENIDO CASO 3 -->
+  <div id="contenido-caso-3" class="panel-caso oculto">
+    <div class="ficha-material">
+      <img src="TrompoMadera.jpg" alt="Trompo Velocidad Baja" class="img-material">
+      <div>
+        <h3>Caso 3: Velocidad Reducida (Polímero / Madera)</h3>
+        <p><strong>Masa (m):</strong> 0.050 kg (50 g) &nbsp;|&nbsp; <strong>Velocidad Inicial (&omega;<sub>0</sub>):</strong> 100 rad/s (955 RPM)</p>
+        <p><strong>Momento de Inercia (I<sub>z</sub>):</strong> 1.35 &times; 10<sup>-5</sup> kg&middot;m&sup2; &nbsp;|&nbsp; <strong>Desaceleración (&alpha;):</strong> -3.0 rad/s&sup2;</p>
+        <p><em>Comportamiento:</em> Al iniciar con menor impulso, la energía cae cuadráticamente a 0.0675 J y el trompo se detiene prematuramente a los <strong>33.3 segundos</strong>.</p>
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr><th>Tiempo (s)</th><th>0</th><th>5</th><th>10</th><th>15</th><th>20</th><th>25</th><th>30</th><th>33.3</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>&omega; (rad/s)</strong></td><td>100</td><td>85</td><td>70</td><td>55</td><td>40</td><td>25</td><td>10</td><td><strong>0.0</strong></td></tr>
+        <tr><td><strong>K<sub>rot</sub> (J)</strong></td><td>0.0675</td><td>0.0488</td><td>0.0331</td><td>0.0204</td><td>0.0108</td><td>0.0042</td><td>0.0007</td><td><strong>0.0000</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+<!-- Gráfica Vectorial Instantánea (Cero tiempo de carga) -->
+<div class="caja-imagen" id="resultados">
+  <h3>Gráfica Comparativa de Desaceleración Angular (&omega; vs t)</h3>
+  
+  <svg viewBox="0 0 650 360" style="width: 100%; max-width: 720px; background: #ffffff; border: 1px solid #dddddd; border-radius: 8px; font-family: Arial, sans-serif;">
+    <!-- Título interno -->
+    <text x="340" y="25" text-anchor="middle" font-size="16" font-weight="bold" fill="#333333">Velocidad Angular (ω) vs. Tiempo (t)</text>
+
+    <!-- Cuadrícula Horizontal (Eje Y: 0 a 160 rad/s) -->
+    <line x1="70" y1="280" x2="610" y2="280" stroke="#333333" stroke-width="2"/> <!-- Eje X (0) -->
+    <line x1="70" y1="225" x2="610" y2="225" stroke="#eeeeee" stroke-width="1"/> <!-- 40 -->
+    <line x1="70" y1="170" x2="610" y2="170" stroke="#eeeeee" stroke-width="1"/> <!-- 80 -->
+    <line x1="70" y1="115" x2="610" y2="115" stroke="#eeeeee" stroke-width="1"/> <!-- 120 -->
+    <line x1="70" y1="60"  x2="610" y2="60"  stroke="#eeeeee" stroke-width="1"/> <!-- 160 -->
+
+    <!-- Cuadrícula Vertical (Eje X: 0 a 120 s) -->
+    <line x1="70"  y1="50" x2="70"  y2="280" stroke="#333333" stroke-width="2"/> <!-- Eje Y (0) -->
+    <line x1="160" y1="50" x2="160" y2="280" stroke="#eeeeee" stroke-width="1"/> <!-- 20s -->
+    <line x1="250" y1="50" x2="250" y2="280" stroke="#eeeeee" stroke-width="1"/> <!-- 40s -->
+    <line x1="340" y1="50" x2="340" y2="280" stroke="#eeeeee" stroke-width="1"/> <!-- 60s -->
+    <line x1="430" y1="50" x2="430" y2="280" stroke="#eeeeee" stroke-width="1"/> <!-- 80s -->
+    <line x1="520" y1="50" x2="520" y2="280" stroke="#eeeeee" stroke-width="1"/> <!-- 100s -->
+    <line x1="610" y1="50" x2="610" y2="280" stroke="#eeeeee" stroke-width="1"/> <!-- 120s -->
+
+    <!-- Etiquetas Eje Y -->
+    <text x="60" y="284" text-anchor="end" font-size="12" fill="#555">0</text>
+    <text x="60" y="229" text-anchor="end" font-size="12" fill="#555">40</text>
+    <text x="60" y="174" text-anchor="end" font-size="12" fill="#555">80</text>
+    <text x="60" y="119" text-anchor="end" font-size="12" fill="#555">120</text>
+    <text x="60" y="64"  text-anchor="end" font-size="12" fill="#555">160</text>
+    <text x="20" y="170" text-anchor="middle" font-size="13" font-weight="bold" fill="#333" transform="rotate(-90 20,170)">Velocidad ω (rad/s)</text>
+
+    <!-- Etiquetas Eje X -->
+    <text x="70"  y="298" text-anchor="middle" font-size="12" fill="#555">0</text>
+    <text x="160" y="298" text-anchor="middle" font-size="12" fill="#555">20</text>
+    <text x="250" y="298" text-anchor="middle" font-size="12" fill="#555">40</text>
+    <text x="340" y="298" text-anchor="middle" font-size="12" fill="#555">60</text>
+    <text x="430" y="298" text-anchor="middle" font-size="12" fill="#555">80</text>
+    <text x="520" y="298" text-anchor="middle" font-size="12" fill="#555">100</text>
+    <text x="610" y="298" text-anchor="middle" font-size="12" fill="#555">120</text>
+    <text x="340" y="320" text-anchor="middle" font-size="13" font-weight="bold" fill="#333">Tiempo (s)</text>
+
+    <!-- Línea Umbral Crítico (35 rad/s -> y = 231.9) -->
+    <line x1="70" y1="232" x2="610" y2="232" stroke="#999999" stroke-width="1.5" stroke-dasharray="5,5"/>
+    <text x="605" y="226" text-anchor="end" font-size="11" fill="#666">Velocidad Crítica (35 rad/s)</text>
+
+    <!-- Configuración 1 (Azul: 0s,150 -> 50s,0) | x: 70 a 295, y: 73.75 a 280 -->
+    <line x1="70" y1="74" x2="295" y2="280" stroke="#2563eb" stroke-width="3.5"/>
+    <circle cx="70" cy="74" r="4.5" fill="#2563eb"/>
+    <circle cx="295" cy="280" r="4.5" fill="#2563eb"/>
+
+    <!-- Configuración 2 (Rojo: 0s,150 -> 100s,0) | x: 70 a 520, y: 73.75 a 280 -->
+    <line x1="70" y1="74" x2="520" y2="280" stroke="#dc2626" stroke-width="3.5"/>
+    <circle cx="520" cy="280" r="4.5" fill="#dc2626"/>
+
+    <!-- Configuración 3 (Verde: 0s,100 -> 33.3s,0) | x: 70 a 220, y: 142.5 a 280 -->
+    <line x1="70" y1="142.5" x2="220" y2="280" stroke="#16a34a" stroke-width="3.5"/>
+    <circle cx="70" cy="142.5" r="4.5" fill="#16a34a"/>
+    <circle cx="220" cy="280" r="4.5" fill="#16a34a"/>
+
+    <!-- Leyenda Inferior -->
+    <rect x="85" y="335" width="14" height="4" fill="#2563eb"/>
+    <text x="105" y="341" font-size="12" fill="#333">Config. 1 (50g | 150 rad/s)</text>
+
+    <rect x="265" y="335" width="14" height="4" fill="#dc2626"/>
+    <text x="285" y="341" font-size="12" fill="#333">Config. 2 (100g | 150 rad/s)</text>
+
+    <rect x="455" y="335" width="14" height="4" fill="#16a34a"/>
+    <text x="475" y="341" font-size="12" fill="#333">Config. 3 (50g | 100 rad/s)</text>
+  </svg>
+</div>
+<!-- 4. ANÁLISIS DE RESULTADOS -->
+<section id="analisis" class="tarjeta">
+  <h2>4. Análisis Comparativo de Variables</h2>
+  <div class="caja-config borde-rojo">
+    <strong>Impacto de la Masa y el Momento de Inercia (Caso 1 vs. Caso 2):</strong> Al duplicar la masa del trompo de 50 g (polímero/madera) a 100 g (aluminio) manteniendo su geometría cónica constante, el momento de inercia axial (I<sub>z</sub>) se duplica de 1.35 &times; 10<sup>-5</sup> a 2.70 &times; 10<sup>-5</sup> kg&middot;m&sup2;. Esto reduce la desaceleración angular a la mitad (de -3.0 a -1.5 rad/s&sup2;) y extiende el tiempo total de giro en un 100 % (pasando de <strong>50.0 s a 100.0 s</strong>).
+  </div>
+  <div class="caja-config borde-verde">
+    <strong>Criticidad de la Velocidad Inicial (Caso 1 vs. Caso 3):</strong> Al mantener la misma masa de 50 g pero reducir la velocidad de lanzamiento en un 33.3 % (de 150 a 100 rad/s), la energía cinética rotacional inicial (K<sub>rot</sub> = &frac12; I<sub>z</sub> &omega;&sup2;) cae cuadráticamente en un 55.6 %. Como el sistema se frena a la misma tasa (-3.0 rad/s&sup2;), alcanza el reposo en apenas <strong>33.3 s</strong>.
+  </div>
+</section>
+
+<!-- 5. SIMULADOR INTERACTIVO 3D -->
+<section id="simulador" class="tarjeta">
+  <h2>5. Simulación Computacional 3D (Web VPython)</h2>
+  <p>Interactúa con el modelo tridimensional programado en Web VPython para observar en tiempo real la rotación propia, la precesión y el colapso del trompo al cruzar el umbral crítico de 35 rad/s:</p>
+  
+  <div class="destacado">
+    <strong>Guía rápida de lectura:</strong><br>
+    • <strong>Flecha Verde (L):</strong> Vector de momento angular; observa cómo se acorta conforme disminuye la velocidad.<br>
+    • <strong>Flecha Roja (&tau;):</strong> Torque gravitacional perpendicular que impulsa el giro cónico (precesión).<br>
+    • <strong>Botones superiores:</strong> Alterna entre los 3 casos de estudio o activa la cámara rápida (x3) para comprobar los tiempos de paro.
+  </div>
+
+<!-- Esto carga tu archivo simulacion.html desde tu misma carpeta sin necesitar internet -->
+<div style="text-align: center; margin-top: 15px;">
+  <iframe src="TrompoProyecto.html" width="100%" height="680" style="border: 1px solid #dddddd; border-radius: 8px;"></iframe>
+</div>
+
+<!-- SECCIÓN DE EVALUACIÓN INTERACTIVA (KAHOOT) -->
+<section id="kahoot" class="tarjeta">
+  <h2>Actividad Interactiva: Pon a Prueba lo Aprendido</h2>
+  <p>
+    ¿Comprendiste cómo influyen la masa, el momento de inercia y la velocidad en la estabilidad del trompo? Participa en nuestro cuestionario interactivo de 15 preguntas para poner a prueba los conceptos analizados en este proyecto.
+  </p>
+  
+  <div class="destacado" style="text-align: center;">
+    <strong>Quiz: "La Física del Trompo: Giros, Fuerzas y Precesión"</strong><br>
+    <em>15 preguntas sobre cinemática rotacional (MCUV), momento de inercia y casos de estudio.</em><br><br>
+    <a href="https://create.kahoot.it/share/la-fisica-del-trompo-giros-fuerzas-y-precesion/cf71c7fe-6dc5-4b55-9d12-b9da8d83e53a" target="_blank" class="boton">
+      Abrir Quiz en Kahoot
+    </a>
+  </div>
+</section>
+
+
+<!-- 6. CONCLUSIONES -->
+<section id="conclusiones" class="tarjeta">
+  <h2>6. Conclusiones</h2>
+  <ul>
+    <li><strong>Estabilidad Giroscópica:</strong> La verticalidad del trompo ("estado dormido") depende directamente de la magnitud de su momento angular (L = I<sub>z</sub>&omega;). Conforme la fricción frena el giro, la velocidad de precesión (&Omega;) aumenta inversamente hasta que el eje pierde estabilidad y cae.</li>
+    <li><strong>Efecto de la Masa:</strong> Duplicar la masa del cuerpo duplica su momento de inercia y su resistencia al frenado frente a un torque constante, duplicando también su tiempo de giro estable.</li>
+    <li><strong>Influencia de la Velocidad Inicial:</strong> Debido a su relación cuadrática con la energía cinética rotacional, la velocidad de lanzamiento es el factor más determinante para prolongar la duración del movimiento.</li>
+    <li><strong>Validación del Modelo:</strong> Aproximar el trompo a un cono sólido ideal bajo un régimen de MCUV proporciona una base matemática precisa y accesible para predecir su comportamiento en entornos virtuales 3D.</li>
+  </ul>
+</section>
+
+<!-- 7. BIBLIOGRAFÍA -->
+<section id="bibliografia" class="tarjeta">
+  <h2>7. Referencias Bibliográficas</h2>
+  <ul>
+    <li>Beer, F. P., Johnston, E. R., Mazurek, D. F., &amp; Cornwell, P. J. (2013). <em>Mecánica vectorial para ingenieros: Dinámica</em> (10.ª ed.). McGraw-Hill Education.</li>
+    <li>Cross, R. (2013). The rise and fall of spinning tops. <em>American Journal of Physics</em>, 81(4), 280–289. https://doi.org</li>
+    <li>Cross, R. (s.f.). <em>Spinning Tops</em> [Repositorio de datos experimentales de física]. School of Physics, University of Sydney. <a href="https://usyd.edu.au" target="_blank" style="color: #7a1c33;">https://usyd.edu.au</a></li>
+    <li>PhET Interactive Simulations. (s.f.). <em>Revolución Mariquita (Ladybug Revolution)</em> [Simulación interactiva]. University of Colorado Boulder. <a href="https://colorado.edu" target="_blank" style="color: #7a1c33;">https://colorado.edu</a></li>
+    <li>Serway, R. A., &amp; Jewett, J. W. (2018). <em>Física para ciencias e ingeniería</em> (10.ª ed., Vol. 1). Cengage Learning.</li>
+    <li>Sherwood, B., &amp; Chabay, R. (s.f.). <em>Web VPython (GlowScript)</em> [Entorno de programación y modelado 3D]. <a href="https://glowscript.org" target="_blank" style="color: #7a1c33;">https://glowscript.org</a></li>
+    <li>Simonelli, I. (s.f.). <em>How to measure/calculate moment of inertia and energy in a spin top</em> [Video]. YouTube.</li>
+    <li>Tanrıverdi, V. (2023). Motion of a heavy symmetric top with friction. <em>Revista Mexicana de Física</em>, 69(1), 010701. https://doi.org</li>
+    <li>Walsh, T. (s.f.). <em>Rotation, Sliding, Rolling, and Friction</em> [Simulación interactiva]. oPhysics: Interactive Physics Simulations. <a href="https://ophysics.com" target="_blank" style="color: #7a1c33;">https://ophysics.com</a></li>
+    <li>Canal de divulgación física. (2020). <em>Gyroscopic effect and precession explained</em> [Video]. YouTube. <a href="https://youtube.com" target="_blank" style="color: #7a1c33;">https://youtube.com</a></li>
+  </ul>
+</section>
+
+
+
+  </main>
+
+  <!-- PIE DE PÁGINA -->
+  <footer id="equipo" class="pie">
+    <p><strong>Integrantes del equipo:</strong> Arrieta Elizalde Cesar Adrian • Muñoz Diaz Axel Samuel • Villegas del Angel Rodrigo Emanuel</p>
+    <p><strong>Materia:</strong> Mecánica II • <strong>Profesor:</strong> Luis Alberto Puerto Domínguez</p>
+  </footer>
+
+  <!-- Conectamos nuestro archivo JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
